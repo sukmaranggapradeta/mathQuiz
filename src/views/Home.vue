@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <div class="nav">
+      <button @click="$router.push('/game')" class="foo-button mdc-button">Game</button>
       <login></login>
       <router-view/>
     </div>
@@ -15,7 +16,7 @@ export default {
   name: 'home',
   components: {
     Login
-  }
+  },
 }
 </script>
 

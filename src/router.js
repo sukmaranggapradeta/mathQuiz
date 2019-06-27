@@ -17,6 +17,11 @@ export default new Router({
       path: '/rooms',
       name: 'rooms',
       component: () => import(/* webpackChunkName: "rooms" */ './views/Room.vue')
+    },
+    {
+      path: '/game',
+      name: 'Game',
+      component: () => import(/* webpackChunkName: "rooms" */ './views/Game.vue')
     }
 
   ]
