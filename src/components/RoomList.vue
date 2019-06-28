@@ -69,7 +69,7 @@ export default {
             })
             .then(() => {
               console.log("Join Room successfully!", id);
-              localStorage.setItem('roomId', id)
+              localStorage.setItem('roomId_tebakgambar', id)
               this.$router.push(`/rooms/games/${id}`);
             });
         })
@@ -135,6 +135,11 @@ export default {
       this.quiz_rooms = rooms_temp;
       console.log("Created invoke ");
     });
+    if (localStorage.getItem('roomId_tebakgambar')){
+      this.$router.push(`/rooms/games/${localStorage.getItem('roomId_tebakgambar')}`)
+    } else {
+      this.$router.push('/rooms')
+    }
   }
 };
 </script>
