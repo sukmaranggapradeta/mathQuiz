@@ -6,7 +6,7 @@
     <audio id="false-sound">
       <source src="../../public/Family-feud-buzzer.wav" type="audio/mpeg">
     </audio>
-    <div v-if="playing == false" class="center">
+    <div v-if="players_in_room[0].status == 'waiting'" class="center">
       <h1>{{ status }}</h1>
       <div class="col s12 m6">
         <div :class="['card', isFull ? 'blue' : 'grey']">
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <div v-if="playing == true" class="row">
+    <div v-if="players_in_room[0].status == 'playing'" class="row">
       <!-- <a @click="start_game" class="btn btn-large cyan pulse">Start Game</a>
       <h1 v-show="!started">Ready?</h1>
       <h1>{{ countDown }}</h1> -->
@@ -97,7 +97,7 @@ export default {
       index: 0,
       answerText: "",
       players_in_room: [],
-      playing: true,
+      playing: false,
       isCorrect: null,
       timer: 30,
       count: 3,
@@ -130,25 +130,18 @@ export default {
       return score + '%'
     },
     start_game(){
-      this.playing = true
-      // var count = setInterval(()=>{
-      //     this.count--
-      //   },1000)
-      // setTimeout(()=>{
-      //   this.started = true
-      //   this.count = 3
-      //   clearInterval(count)
-      //   var timer = setInterval(()=>{
-      //     this.timer--
-      //   },1000)
-      //   setTimeout(()=>{ 
-      //     console.log('=====================================');
-      //     this.timer = 30
-      //     this.started = false
-      //     clearInterval(timer)
-      //    }, Number(this.timer+'000'));
-
-      // },3000)
+      db
+        .collection("rooms")
+        .doc(localStorage.getItem("roomId_tebakgambar"))
+        .update({
+          status: 'playing'
+        })
+        .then(() => {
+          console.log('status playing')
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     fetchPlayer() {
       db.collection("rooms").onSnapshot(querySnapshot => {
