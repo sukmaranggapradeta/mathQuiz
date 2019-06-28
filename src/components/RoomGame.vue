@@ -109,9 +109,26 @@ export default {
         const sound = document.getElementById('correct-sound')
         sound.play()
         this.answerText = "";
-        setTimeout(() => {
-          this.index++;
-        }, 5000)
+
+        db.collection("rooms")
+        .doc(localStorage.getItem('roomId_tebakgambar'))
+        .get()
+        .then(doc => {
+          let players = doc.data().players
+          let idx = doc.data().players.findIndex(i => i.name === localStorage.getItem('username_tebakgambar'))
+          players[idx].score += 10;
+          
+          return db.collection("rooms")
+          .doc(localStorage.getItem('roomId_tebakgambar'))
+          .update({ players: players })
+        })
+        .then(() => {
+            console.log('Success update score')
+            setTimeout(() => {
+              this.index++;
+            }, 5000)
+          })
+        .catch(err => console.log(err))
       }
       else {
         const sound = document.getElementById('false-sound')
@@ -129,6 +146,17 @@ export default {
     } else {
       this.$router.push("/rooms");
     }
+
+    // db.collection("rooms")
+    //   .doc(localStorage.getItem('roomId_tebakgambar'))
+    //   .get()
+    //   .then(doc => {
+    //     console.log('tes player', doc.data().players)
+    //     let idx = doc.data().players.findIndex(i => i.name === localStorage.getItem('username_tebakgambar'))
+    //     console.log('you player', doc.data().players[idx])
+        
+    //   })
+
   }
 };
 </script>
