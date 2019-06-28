@@ -1,8 +1,12 @@
 <template>
   <div class="home">
+        <audio loop autoplay>
+      <source src="../../public/Fun-video-game-app-music.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="nav">
       <login></login>
-      <router-view/>
+      <!-- <router-view/> -->
     </div>
   </div>
 </template>

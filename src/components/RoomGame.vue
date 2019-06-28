@@ -22,8 +22,7 @@ export default {
         .get()
         .then(doc => {
           let newPlayers = doc.data().players;
-        //   newPlayers.filter({ name: localStorage.getItem("username"), score: 0 });
-          newPlayers = newPlayers.filter(el => (el.name !== localStorage.getItem('username') ))
+          newPlayers = newPlayers.filter(el => (el.name !== localStorage.getItem('username_tebakgambar') ))
           return db
             .collection("rooms")
             .doc(localStorage.getItem('roomId'))

@@ -50,7 +50,7 @@ export default {
       quiz_rooms: [],
       input_user_name: "",
       input_room_name: "",
-      room_owner: localStorage.getItem("username")
+      room_owner: localStorage.getItem("username_tebakgambar")
     };
   },
   methods: {
@@ -60,7 +60,7 @@ export default {
         .get()
         .then(doc => {
           let newPlayers = doc.data().players;
-          newPlayers.push({ name: localStorage.getItem("username"), score: 0 });
+          newPlayers.push({ name: localStorage.getItem("username_tebakgambar"), score: 0 });
           return db
             .collection("rooms")
             .doc(id)
@@ -89,7 +89,7 @@ export default {
         });
     },
     add_username() {
-      localStorage.setItem("username", this.input_user_name);
+      localStorage.setItem("username_tebakgambar", this.input_user_name);
       this.input_user_name = "";
     },
     add_room() {
@@ -97,7 +97,7 @@ export default {
       db.collection("rooms")
         .add({
           room_name: this.input_room_name,
-          owner: localStorage.getItem("username"),
+          owner: localStorage.getItem("username_tebakgambar"),
           players: [
             // {
             //   name: 'tono',
@@ -119,7 +119,7 @@ export default {
         });
     },
     exit_game() {
-      localStorage.removeItem('username')
+      localStorage.removeItem('username_tebakgambar')
       this.$router.push('/')
     }
   },

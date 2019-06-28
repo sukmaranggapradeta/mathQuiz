@@ -14,11 +14,9 @@ style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:-5000;">
         </div>
       </form>
     </div>
-    <audio loop autoplay>
-      <!-- <source src="../../public/Fun-video-game-app-music.mp3" type="audio/ogg"> -->
+    <!-- <audio loop autoplay>
       <source src="../../public/Fun-video-game-app-music.mp3" type="audio/mpeg">
-      <!-- Your browser does not support the audio element. -->
-    </audio>
+    </audio> -->
   </div>
 </template>
 
@@ -34,12 +32,11 @@ export default {
   methods: {
     add_username() {
       if(this.input_user_name !== ''){
-        localStorage.setItem("username", this.input_user_name);
+        localStorage.setItem("username_tebakgambar", this.input_user_name);
         this.input_user_name = ""
         this.$router.push('/rooms')
       } else {
         this.$refs.input_user_name.focus()
-        console.log('else')
       }
     }
   }
@@ -55,45 +52,4 @@ body{
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-/* #bg {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-
-  /* Preserve aspet ratio */
-  /* min-width: 100%;  <source src="horse.ogg" type="audio/ogg">
-
-  min-height: 100%;
-} */ 
-/* #bg {
-  position: fixed; 
-  top: -50%; 
-  left: -50%; 
-  width: 100%; 
-  height: 100%;
-}
-#bg img {
-  position: inherit; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-  margin: auto; 
-  min-width: 100%;
-  min-height: 80%;
-} */
-/* h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-} */
 </style>

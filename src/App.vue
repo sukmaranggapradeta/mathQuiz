@@ -1,10 +1,21 @@
 <template>
   <div id="app">
+    <!-- <audio loop autoplay>
+      <source src="../public/Fun-video-game-app-music.mp3" type="audio/mpeg">
+    </audio> -->
     <div id="nav">
       <router-view/>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  created() {
+    this.$router.push('/rooms')
+  }
+}
+</script>
 
 <style>
 #app {
