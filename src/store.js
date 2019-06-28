@@ -2,11 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-Vue.config.devtools = true
 
 export default new Vuex.Store({
   state: {
-    mainIndex: 0,
     quizzes: [{
       question: 'http://mini-wp.isnanirsyad.online/images-gamegbr/senamotak.jpg',
       answer: 'senam otak'
@@ -16,12 +14,36 @@ export default new Vuex.Store({
       answer: 'lidah buaya'
     },
     {
+      question: 'http://mini-wp.isnanirsyad.online/images-gamegbr/jashujan.jpg',
+      answer: 'jas hujan'
+    },
+    {
       question: 'http://mini-wp.isnanirsyad.online/images-gamegbr/untaianbunga.jpg',
       answer: 'untaian bunga'
     },
     {
+      question: 'http://mini-wp.isnanirsyad.online/images-gamegbr/korbanphp.jpg',
+      answer: 'korban php'
+    },
+    {
       question: 'http://mini-wp.isnanirsyad.online/images-gamegbr/patroligabungan.jpg',
       answer: 'patroli gabungan'
+    },
+    {
+      question: 'http://mini-wp.isnanirsyad.online/images-gamegbr/isiulang.jpg',
+      answer: 'isi ulang'
+    },
+    {
+      question: 'http://mini-wp.isnanirsyad.online/images-gamegbr/kemejakotor.jpg',
+      answer: 'kemeja kotor'
+    },
+    {
+      question: 'http://mini-wp.isnanirsyad.online/images-gamegbr/pulauseribu.jpg',
+      answer: 'pulau seribu'
+    },
+    {
+      question: 'http://mini-wp.isnanirsyad.online/images-gamegbr/aduk kopi.jpg',
+      answer: 'aduk kopi'
     }]
   },
   mutations: {
