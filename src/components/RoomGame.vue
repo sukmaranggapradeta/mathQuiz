@@ -6,6 +6,12 @@
     <h3>OR</h3>
     <hr>
     <H1>GAME START</H1>
+    <audio id="correctSound">
+      <source src="../../public/Quiz-correct-sound-with-applause.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="falseSound">
+      <source src="../../public/Family-feud-buzzer.wav" type="audio/mpeg">
+    </audio>
     <div class="row">
       <div class="col s12 m7 l7">
         <div class="card">
@@ -100,7 +106,16 @@ export default {
         this.answerText.toLowerCase() ===
         this.$store.state.quizzes[this.index].answer
       ) {
-        this.index++;
+        const sound = document.getElementById('correctSound')
+        sound.play()
+        this.answerText = "";
+        setTimeout(() => {
+          this.index++;
+        }, 5000)
+      }
+      else {
+        const sound = document.getElementById('falseSound')
+        sound.play()
         this.answerText = "";
       }
     }
