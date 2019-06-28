@@ -149,7 +149,11 @@ export default {
         let players_temp = [];
         let roomID = localStorage.getItem("roomId_tebakgambar");
         querySnapshot.forEach(doc => {
+          let room = doc.data()
           if (doc.id === roomID) {
+            if(doc.data().status == 'finished' ){
+            this.$router.push('/rooms/winner/'+roomID)
+          }
             players_temp.push({
               id: doc.id,
               ...doc.data()
@@ -157,6 +161,8 @@ export default {
           }
         });
         this.players_in_room = players_temp;
+                  
+
         console.log("Created invoke ");
       });
     },
@@ -209,12 +215,24 @@ export default {
         .then(() => {
             console.log('Success update score')
             if (this.$store.state.quizzes.length - 1 === this.index) {
-              
+              // this.$router.push(`/rooms/winner/${localStorage.getItem('roomId_tebakgambar')}`)
+              db.collection("rooms")
+                .doc(localStorage.getItem('roomId_tebakgambar'))
+                .update({ status: 'finished' })
+                .then(()=>{
+                  console.log('finished');
+                })
+                .catch((err)=>{
+                  console.log(err);
+                  
+                })
             }
-            setTimeout(() => {
-              this.isCorrect = null
+            this.isCorrect = null
               this.index++;
-            }, 5000)
+            // setTimeout(() => {
+            //   this.isCorrect = null
+            //   this.index++;
+            // }, 5000)
           })
         .catch(err => console.log(err))
       }

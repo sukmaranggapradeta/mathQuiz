@@ -22,6 +22,11 @@ export default new Router({
       path: '/rooms/games/:id',
       name: 'gamesdetail',
       component: () => import(/* webpackChunkName: "gamesdetail" */ './views/RoomDetail.vue')
+    },
+    {
+      path: '/rooms/winner/:id',
+      name: 'winnerdetail',
+      component: () => import(/* webpackChunkName: "winnerdetail" */ './views/WinnerDetail.vue')
     }
 
   ]
