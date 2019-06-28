@@ -1,6 +1,7 @@
 <template>
   <div class>
-    <h1>WAITING</h1>
+    <h1>{{ players_in_room[0].room_name }}</h1>
+    
     <hr>
     <h3>OR</h3>
     <hr>

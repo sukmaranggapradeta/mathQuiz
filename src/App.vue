@@ -4,15 +4,21 @@
       <source src="../public/Fun-video-game-app-music.mp3" type="audio/mpeg">
     </audio> -->
     <div id="nav">
+      <!-- <Login></Login> -->
       <router-view/>
     </div>
   </div>
 </template>
 
 <script>
+import Login from './components/Login.vue'
+
 export default {
+  components: {
+    Login
+  },
   created() {
-    this.$router.push('/rooms')
+    // this.$router.push('/')
   }
 }
 </script>
