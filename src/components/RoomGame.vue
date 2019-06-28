@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <audio id="correct-sound">
       <source src="../../public/Quiz-correct-sound-with-applause.mp3" type="audio/mpeg">
@@ -226,6 +227,7 @@ export default {
     }
   },
   created() {
+
     this.fetchPlayer();
     if (localStorage.getItem("roomId_tebakgambar")) {
       this.$router.push(
