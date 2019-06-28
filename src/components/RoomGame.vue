@@ -1,7 +1,7 @@
 <template>
   <div class>
-    <h1>{{ players_in_room[0].room_name }}</h1>
-    
+    <!-- <h1>{{ players_in_room[0].room_name }}</h1> -->
+    {{players_in_room[0].status}}
     <hr>
     <h3>OR</h3>
     <hr>
@@ -51,6 +51,7 @@ export default {
       index: 0,
       answerText: "",
       players_in_room: []
+
     };
   },
   methods: {
@@ -107,6 +108,7 @@ export default {
   },
   created() {
     this.fetchPlayer()
+    // if ()
     if (localStorage.getItem("roomId_tebakgambar")) {
       this.$router.push(
         `/rooms/games/${localStorage.getItem("roomId_tebakgambar")}`
