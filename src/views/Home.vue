@@ -6,7 +6,7 @@
 
     <div class="nav">
       <login></login>
-      <!-- <router-view/> -->
+      <router-view/>
     </div>
   </div>
 </template>

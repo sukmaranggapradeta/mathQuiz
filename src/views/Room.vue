@@ -16,9 +16,12 @@ export default {
     RoomList
   },
   created() {
-    if(!localStorage.getItem('username_tebakgambar')){
-      this.$router.push('/')
-    }
+    // console.log(localStorage.getItem('username_tebakgambar'))
+    // if(localStorage.getItem('username_tebakgambar') === null){
+    //   this.$router.push('/')
+    // }else {
+    //   this.$router.push('/rooms')
+    // }
   }
 };
 </script>
