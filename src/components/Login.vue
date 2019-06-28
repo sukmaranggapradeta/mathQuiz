@@ -24,6 +24,7 @@ style="width:100%;height:100%;position:absolute;top:0;left:0;z-index:-5000;">
 <script>
 import Swal from 'sweetalert2'
 import db from "../config/firebase";
+import { truncate, truncateSync } from 'fs';
 
 export default {
   data() {
@@ -34,26 +35,50 @@ export default {
   },
   methods: {
     fetchPlayer() {
-      db.collection("rooms").onSnapshot(querySnapshot => {
+      db.collection("userstebakgambar").onSnapshot(querySnapshot => {
       let players_temp = [];
-      let roomID = localStorage.getItem("roomId_tebakgambar");
       querySnapshot.forEach(doc => {
-        if (doc.id === roomID) {
           players_temp.push({
             id: doc.id,
             ...doc.data()
           });
-        }
       });
       this.members = players_temp;
+      console.log(players_temp)
       console.log("Created invoke ");
     });
     },
     add_username() {
       if(this.input_user_name !== ''){
-        localStorage.setItem("username_tebakgambar", this.input_user_name);
-        this.input_user_name = ""
-        this.$router.push('/rooms')
+        let isNameUsed = false
+        for (let i = 0 ; i < this.members.length ; i++){
+          if(this.members[i].name === this.input_user_name){
+            Swal.fire({
+              type: 'info',
+              title: 'Oops...',
+              text: `Username already taken by another player`
+            })
+            isNameUsed = true
+          }
+        }
+        if (!isNameUsed){
+          console.log("add users");
+          db.collection("userstebakgambar")
+            .add({
+              name: this.input_user_name,
+            })
+            .then(docRef => {
+              this.input_user_name = "";
+              console.log("user created", docRef.id);
+            })
+            .catch(function(error) {
+              console.error("Error adding Room: ", error);
+            });
+          //kondisi
+          localStorage.setItem("username_tebakgambar", this.input_user_name);
+          this.input_user_name = ""
+          this.$router.push('/rooms')
+        }
       } else {
         Swal.fire({
           type: 'info',
